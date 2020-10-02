@@ -15,6 +15,7 @@
  */
 package com.android.server.bluetooth
 
+import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothProfile
 import android.bluetooth.IBluetooth
 import android.bluetooth.IBluetoothCallback
@@ -133,5 +134,13 @@ class AdapterBinder(rawBinder: IBinder) {
             }
             return false
         }
+    }
+
+    @Throws(RemoteException::class, TimeoutException::class)
+    fun getConnectionState(): Int {
+        val recv: SynchronousResultReceiver<Int> = SynchronousResultReceiver.get()
+        adapterBinder.getAdapterConnectionState(recv);
+        return recv.awaitResultNoInterrupt(SYNC_TIMEOUT)
+                .getValue(BluetoothAdapter.STATE_DISCONNECTED)
     }
 }

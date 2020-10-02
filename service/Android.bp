@@ -83,6 +83,7 @@ java_defaults {
         "bluetooth_flags_java_lib",
         "modules-utils-build_system",
         "modules-utils-shell-command-handler",
+        "modules-utils-handlerexecutor",
     ],
 
     visibility: [":__subpackages__"],
