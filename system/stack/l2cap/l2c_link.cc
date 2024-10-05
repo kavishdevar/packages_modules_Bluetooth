@@ -115,7 +115,8 @@ void l2c_link_hci_conn_comp(tHCI_STATUS status, uint16_t handle,
     p_lcb->link_state = LST_CONNECTED;
 
     /* Get the peer information if the l2cap flow-control/rtrans is supported */
-    l2cu_send_peer_info_req(p_lcb, L2CAP_EXTENDED_FEATURES_INFO_TYPE);
+
+    // l2cu_send_peer_info_req(p_lcb, L2CAP_EXTENDED_FEATURES_INFO_TYPE);
 
     if (p_lcb->IsBonding()) {
       log::debug("Link is dedicated bonding handle:0x{:04x}", p_lcb->Handle());
@@ -801,6 +802,7 @@ static bool l2c_link_check_power_mode(tL2C_LCB* p_lcb) {
  * Returns          void
  *
  ******************************************************************************/
+
 void l2c_link_check_send_pkts(tL2C_LCB* p_lcb, uint16_t local_cid,
                               BT_HDR* p_buf) {
   bool single_write = false;
